@@ -1,1 +1,1 @@
-package assembler
+package main

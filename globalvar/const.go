@@ -14,4 +14,5 @@ const (
 	NbrLive     = 21
 	MaxChecks   = 10
 	MaxExecSize = MemSize / 2
+	Maxplayer  = 4
 )
