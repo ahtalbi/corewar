@@ -15,4 +15,5 @@ const (
 	MaxChecks   = 10
 	MaxExecSize = MemSize / 2
 	Maxplayer  = 4
+	Zeroplayer = 0
 )
