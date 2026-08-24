@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -311,7 +312,8 @@ func valueBytes(v string, pc int, labels map[string]int, size int) ([]byte, erro
 }
 
 func writeCor(path, name, comment string, code []byte) error {
-	f, err := os.Create(path)
+	targetPath := filepath.Join("players", path)
+	f, err := os.Create(targetPath)
 	if err != nil {
 		return err
 	}
