@@ -3,27 +3,21 @@ package main
 import (
 	"fmt"
 	"os"
-	"corwar/globalvar"
 )
 
 func main() {
-
-	Args := os.Args
-	if len(Args) == globalvar.Zeroplayer{
-
-	 fmt.Println("not player  to assmebler")
-	 return
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: ./asm file.s [file2.s ...]")
+		return
 	}
-	Exist := IsExistist(Args)
-	if len(Exist) ==globalvar.Zeroplayer {
-
-	fmt.Println("not valid  player  to assmebler")
-	 return
+	ok := true
+	for _, file := range os.Args[1:] {
+		if err := Assemble(file); err != nil {
+			fmt.Fprintln(os.Stderr, "Error:", err)
+			ok = false
+		}
 	}
-
-
-
-
-	
-
+	if !ok {
+		os.Exit(1)
+	}
 }
