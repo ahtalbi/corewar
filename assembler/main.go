@@ -3,21 +3,21 @@ package main
 import (
 	"fmt"
 	"os"
-	
-
-	"corwar/globalvar"
 )
+
 func main() {
-
-	if len(os.Args) < 2{
-
-
-  fmt.Println("we nedd a least 2 player")
-
-	}else if len(os.Args) > globalvar.MaxPlayers+1 {
-
-		  fmt.Println("hhh just  4 player is the max size")
-
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: ./asm file.s [file2.s ...]")
+		return
 	}
-	
+	ok := true
+	for _, file := range os.Args[1:] {
+		if err := Assemble(file); err != nil {
+			fmt.Fprintln(os.Stderr, "Error:", err)
+			ok = false
+		}
+	}
+	if !ok {
+		os.Exit(1)
+	}
 }
